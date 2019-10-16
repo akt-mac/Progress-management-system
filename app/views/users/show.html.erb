@@ -1,0 +1,14 @@
+<% provide(:title, @user.name) %>
+<div>
+  <table class="table table-bordered table-condensed user-table">
+    <tr>
+      <td class="active">名前</td>
+      <td><%= @user.name %></td>
+    </tr>
+
+    <tr>
+      <td class="active">メールアドレス</td>
+      <td><%= @user.email %></td>
+    </tr>
+  </table>
+</div>
