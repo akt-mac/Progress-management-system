@@ -93,6 +93,14 @@ p {
   margin-top: 10px;
 }
 
+.checkbox-login {
+  width: auto;
+  margin-left: 25px;
+  span {
+    font-weight: normal;
+  }
+}
+
 /* エラーメッセージ */
 
 #error_explanation {
