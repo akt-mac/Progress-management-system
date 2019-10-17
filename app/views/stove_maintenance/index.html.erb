@@ -1,0 +1,40 @@
+<% provide(:title, '薪ストーブメンテナンス進捗一覧') %>
+<h1>薪ストーブメンテナンス 進捗一覧</h1>
+
+<div>
+  <div>
+    <%= link_to "新規登録", new_stove_maintenance_path, remote: true, class: "btn btn-lg btn-info pull-right btn-index" %>
+  </div>
+  
+  <div>
+  <table class="table table-bordered table-condensed" id="maint-table">
+    <thead>
+      <tr>
+        <th>受付日</th>
+        <th>氏名</th>
+        <th>進捗</th>
+        <th>煙突</th>
+        <th>本体</th>
+        <th>住所</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @stoves.each do |stove| %>
+        <tr>
+          <th></th>
+          <th><%= stove.name %></th>
+          <th><%= stove.phone_number %></th>
+          <th><%= stove.cell_phone_number %></th>
+          <th></th>
+          <th><%= stove.address %></th>
+          <th></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!--モーダルウインドウ表示-->
+<div id="new-stove-maintenance" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

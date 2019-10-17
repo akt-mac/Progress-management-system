@@ -1,0 +1,2 @@
+module StoveMaintenanceHelper
+end
