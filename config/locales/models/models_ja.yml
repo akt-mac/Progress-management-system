@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      customer: 得意先
     attributes:
         user:
           id: ID
@@ -11,3 +12,11 @@ ja:
           password_confirmation: パスワード再入力
           created_at: 作成日
           updated_at: 更新日
+        customer:
+          customer_id: 得意先コード
+          name: 得意先名
+          email: メールアドレス
+          phone_number: 電話番号
+          mobile_number: 携帯電話番号
+          zip: 郵便番号
+          address: 住所

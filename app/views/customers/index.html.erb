@@ -1,0 +1,47 @@
+<% provide(:title, '得意先一覧') %>
+<h1>得意先一覧</h1>
+
+<div class="col-md-10 col-md-offset-1">
+  <div>
+    <%= will_paginate %>
+  </div>
+  <div class="search">
+    <%= form_tag(customers_path,method: :get) do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag 'Search', name: nil %>
+    <% end %>
+  </div>
+  <table class="table table-condensed table-hover" id="table-customers">
+    <thead>
+      <tr>
+        <th><%= Customer.human_attribute_name :customer_id %></th>
+        <th><%= Customer.human_attribute_name :name %></th>
+        <th><%= Customer.human_attribute_name :zip %></th>
+        <th><%= Customer.human_attribute_name :address %></th>
+        <th><%= Customer.human_attribute_name :phone_number %></th>
+        <th><%= Customer.human_attribute_name :mobile_number %></th>
+        <th><%= Customer.human_attribute_name :email %></th>
+      </tr>
+    </thead>
+
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.customer_id %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.zip %></td>
+        <td><%= customer.address %></td>
+        <td><%= customer.phone_number %></td>
+        <td><%= customer.mobile_number %></td>
+        <td><%= customer.email %></td>
+        <td>
+          <% if current_user.admin? %>
+            <%= link_to "削除", customer, method: :delete,
+                data: { confirm: "#{customer.name}のデータを削除してよろしいですか？" },
+                class: "btn btn-danger" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate %>
+</div>
