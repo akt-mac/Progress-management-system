@@ -7,8 +7,9 @@
   </div>
   <div class="search">
     <%= form_tag(customers_path,method: :get) do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag 'Search', name: nil %>
+      <%= text_field_tag :search, '', placeholder: '検索' %>
+      <%= submit_tag 'OK', name: nil %>
+      &emsp;&emsp;検索条件：得意先名、住所、電話、携帯、メールアドレス
     <% end %>
   </div>
   <table class="table table-condensed table-hover" id="table-customers">
