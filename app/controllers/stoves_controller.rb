@@ -1,4 +1,4 @@
-class StoveMaintenanceController < ApplicationController
+class StovesController < ApplicationController
   
   def index
     @stoves = Stove.all

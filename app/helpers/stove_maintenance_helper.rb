@@ -1,2 +1,0 @@
-module StoveMaintenanceHelper
-end
