@@ -15,7 +15,7 @@
   <table class="table table-condensed table-hover" id="table-customers">
     <thead>
       <tr>
-        <th><%= Customer.human_attribute_name :customer_id %></th>
+        <th><%= Customer.human_attribute_name :customer_code %></th>
         <th><%= Customer.human_attribute_name :name %></th>
         <th><%= Customer.human_attribute_name :zip %></th>
         <th><%= Customer.human_attribute_name :address %></th>
@@ -27,7 +27,7 @@
 
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= customer.customer_id %></td>
+        <td><%= customer.customer_code %></td>
         <td><%= customer.name %></td>
         <td><%= customer.zip %></td>
         <td><%= customer.address %></td>

@@ -24,7 +24,7 @@ class StovesController < ApplicationController
   
   private
   
-    def stove_params
-      params.require(:stove).permit(:note)
+    def stoves_params
+      params.require(:customer).permit(:stoves [:note, :summary_1, :summary_2])[:stoves]
     end
 end

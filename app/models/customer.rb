@@ -1,7 +1,8 @@
 class Customer < ApplicationRecord
+  has_many :stoves, dependent: :destroy
   before_save { self.email = email.downcase if email.present? }
   
-  validates :customer_id, presence: true, length: { maximum: 50 }, uniqueness: true
+  validates :customer_code, presence: true, length: { maximum: 50 }, uniqueness: true
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, length: { maximum: 100 },
