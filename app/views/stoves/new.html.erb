@@ -1,0 +1,44 @@
+<% provide(:class_text, 'new') %>
+<% provide(:button_text, '新規作成') %>
+
+
+
+  <h1 class="modal-title">新規作成</h1>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <%= form_with(model: @stove, url: new_stofe_path, local: true) do |f| %>
+        <!--<= render 'shared/error_messages', object: @user >-->
+        
+        <div>
+        <%= f.label :signup_at, class: "label-#{yield(:class_text)}" %>
+        <%= f.date_field :signup_at, class: "form-control"  %>
+        </div>
+        
+        <span>&nbsp;</span>
+        
+        <div>
+        <%= f.check_box :summary_1, class: "checkbox-inline" %>
+        <%= f.label :summary_1, class: "label-#{yield(:class_text)}" %>
+        <span>&emsp;&emsp;</span>
+        <%= f.check_box :summary_2, class: "checkbox-inline" %>
+        <%= f.label :summary_2, class: "label-#{yield(:class_text)}" %>
+        </div>
+        
+        <span>&emsp;</span>
+        
+        <div><%= link_to "検索", stoves_serch_path %></div>
+
+        <div>
+        <%= f.label :note, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_area :note, class: "form-control", rows: 3 %>
+        </div>
+      
+        <div class="center">
+          <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>
+          <button type="button" class="btn btn-default btn-<%= yield(:class_text) %>" data-dismiss="modal">
+            キャンセル
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>

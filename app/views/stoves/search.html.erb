@@ -2,11 +2,8 @@
 <h1>得意先一覧</h1>
 
 <div class="col-md-10 col-md-offset-1">
-  <div>
-    <%= will_paginate %>
-  </div>
   <div class="search">
-    <%= form_tag(customers_path, method: :get) do %>
+    <%= form_tag(stoves_serch_path, method: :get) do %>
       <%= text_field_tag :search, '', placeholder: '検索' %>
       <%= submit_tag 'OK', name: nil %>
       &emsp;&emsp;検索条件：得意先名、住所、電話、携帯、メールアドレス
@@ -34,15 +31,8 @@
         <td><%= customer.phone_number %></td>
         <td><%= customer.mobile_number %></td>
         <td><%= customer.email %></td>
-        <td>
-          <% if current_user.admin? %>
-            <%= link_to "削除", customer, method: :delete,
-                data: { confirm: "#{customer.name}のデータを削除してよろしいですか？" },
-                class: "btn btn-danger" %>
-          <% end %>
-        </td>
+        <td><%= link_to "選択", '#', class: "btn btn-default" %></td>
       </tr>
     <% end %>
   </table>
-  <%= will_paginate %>
 </div>

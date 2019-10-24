@@ -1,5 +1,4 @@
 class Customer < ApplicationRecord
-  has_many :stoves, dependent: :destroy
   before_save { self.email = email.downcase if email.present? }
   
   validates :customer_code, presence: true, length: { maximum: 50 }, uniqueness: true
@@ -14,8 +13,8 @@ class Customer < ApplicationRecord
   
   def self.search(search)
     if search
-      where(['name LIKE ? OR email LIKE ? OR phone_number LIKE ? OR mobile_number LIKE ? OR address LIKE ?',
-              "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
+      where(['name LIKE ? OR email LIKE ? OR phone_number LIKE ? OR mobile_number LIKE ?',
+              "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
     else
       all
     end

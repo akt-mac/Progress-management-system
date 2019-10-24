@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       customer: 得意先
+      stove: ストーブ
     attributes:
         user:
           id: ID
@@ -20,3 +21,9 @@ ja:
           mobile_number: 携帯電話番号
           zip: 郵便番号
           address: 住所
+        stove:
+          signup_at: 受付日
+          summary_1: 煙突
+          summary_2: 本体
+          note: 備考
+          
