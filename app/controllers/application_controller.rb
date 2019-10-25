@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
     @stove = Stove.find(params[:id])
   end
   
-  def set_customer
-    @customer = Customer.find(params[:id])
-  end
-  
   def logged_in_user
     unless logged_in?
       store_location

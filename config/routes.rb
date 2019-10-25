@@ -8,9 +8,6 @@ Rails.application.routes.draw do
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   
-  get '/stoves/serch', to: 'stoves#search'
-  
   resources :users
-  resources :customers
   resources :stoves
 end

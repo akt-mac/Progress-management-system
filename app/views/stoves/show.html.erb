@@ -1,0 +1,58 @@
+<% provide(:title, @stove.customer_name) %>
+
+<h1>お客様情報詳細</h1>
+<div class="row">
+  <div class="col-md-12 show-user">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>受付日</th>
+          <td class="col-md-10 warning"><%= @stove.signup_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <th>得意先名</th>
+          <td class="col-md-10 warning"><%= @stove.customer_name %></td>
+        </tr>
+        <tr>
+          <th>進捗状況</th>
+          <td class="col-md-10 warning">
+            <!--< if @stovemaint.progress == '1' >-->
+            <!--  <label class="label label-success">完了</label>-->
+            <!--< else >-->
+            <!--  <label class="label label-danger">未完</label>-->
+            <!--< end >-->
+          </td>
+        </tr>
+        <tr>
+          <th>メンテナンス</th>
+          <td class="col-md-10 warning">
+            <% if @stove.summary_1 == '1' %>
+              <label class="label label-danger">煙突</label>
+            <% end %>
+            <% if @stove.summary_2 == '1' %>
+              <label class="label label-warning">本体</label>
+            <% end %>
+          </td>
+        <tr>
+          <th></th>
+          <td class="col-md-10 warning">
+            <%= "電話：#{@stove.phone_number}" %>
+            <br>
+            <%= "携帯：#{@stove.mobile_number}" %>
+          </td>
+        <tr>
+          <th>住所</th>
+          <td class="col-md-10 warning">
+            <%= @stove.address %>
+          </td>
+        <tr>
+          <th>備考</th>
+          <td class="col-md-10 warning">
+            <%= @stove.note %>
+            <!--<= auto_link(safe_join(@stove.note.split("\n"), tag(:br))) >-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

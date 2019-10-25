@@ -135,17 +135,6 @@ p {
   height: 100px;
 }
 
-/* 得意先一覧ページ */
-
-#table-customers {
-  td {
-    vertical-align: middle;
-  }  
-}
-
-.search {
-  margin-bottom: 10px;
-}
 /* ログインフォーム */
 
 .label-login {
@@ -162,6 +151,18 @@ p {
   span {
     font-weight: normal;
   }
+}
+
+/* ストーブメンテナンス一覧ページ */
+
+.label-text {
+  font-size: large;
+}
+
+/* 得意先詳細ページ */
+
+.show-user {
+  font-size: x-large;
 }
 
 /* モーダルウインドウの位置調整 */

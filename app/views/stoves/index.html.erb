@@ -1,35 +1,46 @@
 <% provide(:title, '薪ストーブメンテナンス進捗一覧') %>
 <h1>薪ストーブメンテナンス 進捗一覧</h1>
 
-<div>
+<div class="col-md-12">
   <div>
     <%= link_to "新規登録", new_stofe_path, class: "btn btn-lg btn-info pull-right btn-index" %>
   </div>
   
   <div>
-  <table class="table table-bordered table-condensed" id="maint-table">
+  <table class="table table-bordered table-condensed text-center" id="maint-table">
     <thead>
       <tr>
-        <th>受付日</th>
-        <th>氏名</th>
-        <th>進捗</th>
-        <th>煙突</th>
-        <th>本体</th>
-        <th>住所</th>
-        <th>備考</th>
+        <th class="text-center">受付日</th>
+        <th class="text-center">氏名</th>
+        <th class="text-center">進捗</th>
+        <th class="text-center">煙突</th>
+        <th class="text-center">本体</th>
+        <th class="text-center">住所</th>
+        <th class="text-center">備考</th>
       </tr>
     </thead>
     
     <tbody>
       <% @stoves.each do |stove| %>
         <tr>
-          <th></th>
-          <th><%= stove.name %></th>
-          <th><%= stove.phone_number %></th>
-          <th><%= stove.mobile_number %></th>
-          <th></th>
-          <th><%= stove.address %></th>
-          <th></th>
+          <td><%= stove.signup_at.strftime('%m/%d') %></td>
+          <td><%= link_to stove.customer_name, stofe_path(stove) %></td>
+          <td></td>
+          
+          <% if stove.summary_1 == "1" %>
+            <td class="label-text"><label class="label label-danger">&emsp;煙突&emsp;</label></td>
+          <% else %>
+            <td></td>
+          <% end %>
+          
+          <% if stove.summary_2 == "1" %>
+            <td class="label-text"><label class="label label-warning">&emsp;本体&emsp;</label></td>
+          <% else %>
+            <td></td>
+          <% end %>
+          
+          <td><%= stove.address %></td>
+          <td></th>
         </tr>
       <% end %>
     </tbody>
