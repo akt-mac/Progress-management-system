@@ -5,43 +5,6 @@
 <h1 class="modal-title">新規作成</h1>
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= form_with(model: @stove, local: true) do |f| %>
-      <%= render partial: 'shared/error_messages', locals: { obj: @stove } %>
-      
-      <div>
-      <%= f.label :signup_at, class: "label-#{yield(:class_text)}" %>
-      <%= f.date_field :signup_at, class: "form-control"  %>
-      </div>
-      
-      <p></p>
-      <div>
-      <%= f.check_box :summary_1, class: "checkbox-inline" %>
-      <%= f.label :summary_1, class: "label-#{yield(:class_text)}" %>
-      <span>&emsp;&emsp;</span>
-      <%= f.check_box :summary_2, class: "checkbox-inline" %>
-      <%= f.label :summary_2, class: "label-#{yield(:class_text)}" %>
-      </div>
-      <p></p>
-      
-      <%= f.label :customer_name, class: "label-#{yield(:class_text)}" %>
-      <%= f.text_field :customer_name, class: "form-control" %>
-
-      <%= f.label :address, class: "label-#{yield(:class_text)}" %>
-      <%= f.text_field :address, class: "form-control" %>
-      
-      <%= f.label :phone_number, class: "label-#{yield(:class_text)}" %>
-      <%= f.text_field :phone_number, class: "form-control" %>
-      
-      <%= f.label :mobile_number, class: "label-#{yield(:class_text)}" %>
-      <%= f.text_field :mobile_number, class: "form-control" %>
-
-      <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-      <%= f.text_area :note, class: "form-control", rows: 3 %>
-    
-      <div class="center">
-        <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>
-        <%= link_to "キャンセル", '#', class: "btn btn-default active btn-#{yield(:class_text)}" %>
-      </div>
-    <% end %>
+    <%= render 'form' %>
   </div>
 </div>

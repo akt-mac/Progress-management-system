@@ -1,5 +1,6 @@
 class StovesController < ApplicationController
   before_action :set_user, only: %i(show update destroy)
+  before_action :set_stove, only: %i(show edit update)
   
   def index
     @stoves = Stove.all
@@ -10,7 +11,6 @@ class StovesController < ApplicationController
   end
   
   def show
-    @stove = Stove.find(params[:id])
   end
   
   def create
@@ -22,7 +22,16 @@ class StovesController < ApplicationController
     end
   end
   
+  def edit
+  end
+  
   def update
+    if @stove.update_attributes(stove_params)
+      flash[:success] = "#{@stove.customer_name}の登録情報を更新しました。"
+      redirect_to stoves_url
+    else
+      render :edit
+    end
   end
   
   def destroy
