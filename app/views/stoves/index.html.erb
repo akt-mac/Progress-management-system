@@ -26,7 +26,7 @@
         <tr>
           <td><%= stove.signup_at.strftime('%m/%d') %></td>
           <td><%= link_to stove.customer_name, stofe_path(stove) %></td>
-          <td class="label-text"><label class="label label-default">未完了</label></td>
+          <td><%= link_to "未完了", edit_progress_path(stove), class: "btn btn-default active" %></td>
           
           <% if stove.summary_1 == "1" %>
             <td class="label-text"><label class="label label-danger">&emsp;煙突&emsp;</label></td>

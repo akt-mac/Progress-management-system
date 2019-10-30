@@ -1,6 +1,6 @@
 class StovesController < ApplicationController
   before_action :set_user, only: %i(show update destroy)
-  before_action :set_stove, only: %i(show edit update)
+  before_action :set_stove, only: %i(show edit update edit_progress)
   
   def index
     @stoves = Stove.all
@@ -34,6 +34,12 @@ class StovesController < ApplicationController
     end
   end
   
+  def edit_progress
+  end
+  
+  def update_progress
+  end
+  
   def destroy
   end
   
@@ -43,6 +49,7 @@ class StovesController < ApplicationController
        params.require(:stove).permit(:signup_at,
                                      :summary_1,
                                      :summary_2,
+                                     :progress,
                                      :customer_name,
                                      :phone_number,
                                      :mobile_number,
