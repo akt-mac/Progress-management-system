@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20191030014747) do
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "Customer_id"
     t.string "summary_1"
     t.string "summary_2"
     t.date "signup_at"
@@ -38,7 +37,6 @@ ActiveRecord::Schema.define(version: 20191030014747) do
     t.string "mobile_number"
     t.string "address"
     t.string "progress"
-    t.index ["Customer_id"], name: "index_stoves_on_Customer_id"
   end
 
   create_table "users", force: :cascade do |t|

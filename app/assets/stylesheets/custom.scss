@@ -23,6 +23,10 @@ textarea {
   margin-bottom: 10px;
 }
 
+.display-none {
+  display: none;
+}
+
 /* タイポグラフィ */
 
 h1, h2, h3, h4, h5, h6 {
@@ -159,10 +163,10 @@ p {
   font-size: large;
 }
 
-/* 得意先詳細ページ */
+/* 進捗更新ページ */
 
-.show-user {
-  font-size: x-large;
+.btn-progress {
+  margin-top: 50px;
 }
 
 /* モーダルウインドウの位置調整 */
@@ -218,4 +222,43 @@ p {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
+}
+
+/* チェックボックス */
+
+.chkbox {
+	margin:			0 0 10px 20px;
+}
+
+.chkbox label {
+	padding-left:		38px;			/* ラベルの位置 */
+	font-size:		24px;
+	line-height:		32px;
+	display:		inline-block;
+	cursor:			pointer;
+	position:		relative;
+}
+
+/* ボックスのスタイル */
+.chkbox label:before {
+	content:		'';
+	width:			32px;			/* ボックスの横幅 */
+	height:			32px;			/* ボックスの縦幅 */
+	display:		inline-block;
+	position:		absolute;
+	left:			0;
+	background-color:	#fff;
+	box-shadow:		inset 1px 2px 3px 0px #000;
+	border-radius:		6px 6px 6px 6px;
+}
+/* 元のチェックボックスを表示しない */
+.chkbox input[type=checkbox] {
+	display:		none;
+}
+/* チェックした時のスタイル */
+.chkbox input[type=checkbox]:checked + label:before {
+	content:		'\1F5F8';		/* チェックの文字 */ 
+	font-size:		55px;			/* チェックのサイズ */
+	color:			#444;			/* チェックの色 */
+	background-color:	#5cb85c;			/* チェックした時の色 */
 }

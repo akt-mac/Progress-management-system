@@ -18,17 +18,24 @@ end
 puts "Completed! sample user"
 
 100.times do |n|
-  customer_id = "018#{rand(88800000..88999999)}-00"
-  name = Faker::Name.name
-  zip = Faker::Address.postcode
+  signup_at = Date.today
+  customer_name = Faker::Name.name
+  summary_1 = 1
+  summary_2 = rand(0..1)
+  address = "秋田市" + Faker::Address.city + Faker::Address.street_name
   phone_number = "0188#{rand(10..99)}#{rand(1111..9999)}"
   mobile_number = "090#{rand(1111..9999)}#{rand(1111..9999)}"
-  address = "秋田市" + Faker::Address.city + Faker::Address.street_name
-  Customer.create!(customer_id: customer_id,
-                   name: name,
-                   zip: zip,
+  note =  Faker::Lorem.sentence
+  progress = 0
+  
+  Stove.create!(signup_at: signup_at,
+                   customer_name: customer_name,
+                   summary_1: summary_1,
+                   summary_2: summary_2,
+                   address: address,
                    phone_number: phone_number,
                    mobile_number: mobile_number,
-                   address: address)
+                   note: note,
+                   progress: progress)
 end
-puts "Completed! sample customer"
+puts "Completed! sample stove"

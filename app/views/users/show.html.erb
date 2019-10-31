@@ -13,12 +13,13 @@
   </table>
   <div>
     <div class="category">
-      <%= link_to "修理管理表", "#", class: "btn btn-default btn-block btn-lg active flexiblebox progress-btn" %>
+      <%= link_to "修理管理表", '#', class: "btn btn-default btn-block btn-lg active flexiblebox progress-btn" %>
       <p>未完了件数</p>
     </div>
     <div class="category">
-      <%= link_to "薪ストーブメンテナンス表", stoves_path, class: "btn btn-danger btn-block btn-lg active flexiblebox progress-btn" %>
-      <p>未完了件数</p>
+      <%= link_to stoves_path, class: "btn btn-danger btn-block btn-lg active flexiblebox progress-btn" do %>
+        薪ストーブメンテナンス表<br>未完了件数：<%= Stove.where(progress: "0").count %>件
+      <% end %>
     </div>
     <div class="category">
       <%= link_to "薪受注表", '#', class: "btn btn-warning btn-block btn-lg active flexiblebox progress-btn" %>

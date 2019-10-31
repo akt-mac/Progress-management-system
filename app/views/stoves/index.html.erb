@@ -1,13 +1,32 @@
 <% provide(:title, '薪ストーブメンテナンス進捗一覧') %>
-<h1>薪ストーブメンテナンス 進捗一覧</h1>
+
+<% if params[:search].present? %>
+  <h1>検索結果</h1>
+  <h1><%= link_to "戻る", stoves_path %></h1>
+<% else %>
+  <h1>薪ストーブメンテナンス 進捗一覧</h1>
+<% end %>
 
 <div class="col-md-12">
+  <div class="input-group">
+    <P>ユーザー名検索</P>
+    <%= form_tag(stoves_path, method: :get) do %>
+      <span class="input-group-btn">
+        <%= text_field_tag :search, '', placeholder: 'キーワードを入力', class: "form-control" %>
+        <%= submit_tag '検索', customer_name: nil, class: "btn btn-primary" %>
+      </span>
+    <% end %>
+  </div>
+  
+  <% if @stoves.count == 0 %>
+  <% else %>
   <div>
     <%= link_to "新規登録", new_stofe_path, class: "btn btn-lg btn-info pull-right btn-index" %>
   </div>
   
   <div>
-  <table class="table table-bordered table-condensed table-striped text-center table-hover" id="maint-table">
+  <%= will_paginate %>
+  <table class="table table-bordered table-condensed table-striped table-hover text-center" id="maint-table">
     <thead>
       <tr>
         <th class="text-center">受付日</th>
@@ -23,10 +42,16 @@
     
     <tbody>
       <% @stoves.each do |stove| %>
-        <tr>
+        <tr class="<%= "success" if stove.progress == "1" %>">
           <td><%= stove.signup_at.strftime('%m/%d') %></td>
           <td><%= link_to stove.customer_name, stofe_path(stove) %></td>
-          <td><%= link_to "未完了", edit_progress_path(stove), class: "btn btn-default active" %></td>
+          <td>
+            <% if stove.progress == "0" %>
+              <%= link_to "未完了", edit_progress_path(stove), class: "btn btn-default active" %>
+            <% else stove.progress == "1" %>
+              <%= link_to "完了", edit_progress_path(stove), class: "btn btn-success" %>
+            <% end %>
+          </td>
           
           <% if stove.summary_1 == "1" %>
             <td class="label-text"><label class="label label-danger">&emsp;煙突&emsp;</label></td>
@@ -47,4 +72,6 @@
       <% end %>
     </tbody>
   </table>
+  <%= will_paginate %>
+  <% end %>
 </div>

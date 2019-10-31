@@ -30,6 +30,8 @@
 
   <%= f.label :note, class: "label-#{yield(:class_text)}" %>
   <%= f.text_area :note, class: "form-control", rows: 3 %>
+  
+  <%= f.check_box :progress, class: "display-none" %>
 
   <div class="center">
     <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>

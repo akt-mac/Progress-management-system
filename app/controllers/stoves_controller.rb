@@ -1,9 +1,19 @@
 class StovesController < ApplicationController
-  before_action :set_user, only: %i(show update destroy)
+  before_action :set_user, only: %i(destroy)
   before_action :set_stove, only: %i(show edit update edit_progress)
   
   def index
-    @stoves = Stove.all
+    if params[:search] == ""
+      redirect_to stoves_url
+      flash[:danger] = "キーワードを入力してください。"
+    else
+      @stoves = Stove.paginate(page: params[:page], per_page: 20).
+                      search(params[:search]).
+                      order(progress: "ASC", signup_at: "DESC", created_at: "DESC")
+      if params[:search].present?
+        flash[:success] = "検索結果：#{@stoves.count}件" 
+      end
+    end
   end
   
   def new

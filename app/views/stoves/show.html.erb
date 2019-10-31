@@ -16,11 +16,11 @@
         <tr>
           <th>進捗状況</th>
           <td>
-            <!--< if @stovemaint.progress == '1' >-->
-            <!--  <label class="label label-success">完了</label>-->
-            <!--< else >-->
-            <!--  <label class="label label-danger">未完</label>-->
-            <!--< end >-->
+            <% if @stove.progress == '1' %>
+              <label class="label label-success">完了</label>
+            <% else %>
+              <label class="label label-default">未完了</label>
+            <% end %>
           </td>
         </tr>
         <tr>

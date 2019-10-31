@@ -3,15 +3,15 @@
 <h1 class="modal-title">進捗更新</h1>
 <h2>完了したらチェックボタンを押して更新</h2>
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-10 col-md-offset-1 center">
     <%= form_with(model: @stove, local: true) do |f| %>
- 		<div>
-	  	<%= f.check_box :progress, id: "check" %>
-	  	<%= f.label :progress %>
+ 		<div class="chkbox">
+	  	<%= f.check_box :progress, id: "chkbox-progress" %>
+	  	<%= f.label "完了", for: "chkbox-progress" %>
 		</div>
-    <div>
-      <%= f.submit "更新", class: "btn btn-primary" %>
-      <%= link_to "キャンセル", stoves_path, class: "btn btn-default active" %>
+    <div class="btn-progress">
+      <%= f.submit "進捗更新", class: "btn btn-lg btn-success" %>
+      <%= link_to "キャンセル", stoves_path, class: "btn btn-lg btn-default active" %>
     </div>
 		<% end %>
   </div>
