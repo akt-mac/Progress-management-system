@@ -5,9 +5,10 @@ class StovesController < ApplicationController
   def index
     if params[:search] == ""
       redirect_to stoves_url
-      flash[:danger] = "キーワードを入力してください。"
+      flash[:danger] = "得意先名を入力してください。"
     else
-      @stoves = Stove.paginate(page: params[:page], per_page: 20).
+      @page = 20
+      @stoves = Stove.paginate(page: params[:page], per_page: @page).
                       search(params[:search]).
                       order(progress: "ASC", signup_at: "DESC", created_at: "DESC")
       if params[:search].present?
@@ -15,6 +16,13 @@ class StovesController < ApplicationController
       end
     end
   end
+
+  # def stoves_page
+  #   @page = params[:per]
+  #   @stoves = Stove.paginate(page: params[:page], per_page: @page).
+  #                   order(progress: "ASC", signup_at: "DESC", created_at: "DESC")
+  #   render :index
+  # end
   
   def new
     @stove = Stove.new

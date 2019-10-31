@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   
-  get '/stoves/:id/edit_progress/', to: 'stoves#edit_progress', as: :edit_progress
+  get '/stoves/:id/edit_progress', to: 'stoves#edit_progress', as: :edit_progress
   post '/stove/:id/update_progress', to: 'stoves#update_progress', as: :update_progress
+  
+  # get '/stoves/:per', to: 'stoves#stoves_page'
   
   resources :users
   resources :stoves

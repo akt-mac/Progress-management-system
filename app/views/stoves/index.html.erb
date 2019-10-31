@@ -9,14 +9,29 @@
 
 <div class="col-md-12">
   <div class="input-group">
-    <P>ユーザー名検索</P>
-    <%= form_tag(stoves_path, method: :get) do %>
+    <%= form_tag(stoves_path, method: :get) do %> <!-- 得先名検索フォーム -->
       <span class="input-group-btn">
-        <%= text_field_tag :search, '', placeholder: 'キーワードを入力', class: "form-control" %>
+        <%= text_field_tag :search, '', placeholder: '得意先名を入力', class: "form-control" %>
         <%= submit_tag '検索', customer_name: nil, class: "btn btn-primary" %>
       </span>
     <% end %>
   </div>
+  
+  <% unless params[:search].present? %>
+  <!--<div class="dropdown doropdown-index">-->
+  <!--　<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+  <!--　　<%= @page %>-->
+  <!--　　<span class="caret"></span>-->
+  <!--　</button>-->
+  <!--　<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+  <!--　　<li><%= link_to("10", "/stoves/10") %></li>-->
+  <!--　　<li><%= link_to("20", "/stoves/20") %></li>-->
+  <!--　　<li><%= link_to("50", "/stoves/50") %></li>-->
+  <!--　　<li><%= link_to("100", "/stoves/100") %></li>-->
+  <!--　</ul>-->
+  <!--　<span class="doropdown-text">件表示</span>-->
+  <!--</div>-->
+  <% end %>
   
   <% if @stoves.count == 0 %>
   <% else %>

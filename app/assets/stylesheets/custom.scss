@@ -27,6 +27,14 @@ textarea {
   display: none;
 }
 
+.doropdown-index {
+  margin: 10px 0 0 -15px;
+}
+
+.doropdown-text {
+  margin-left: -30px;
+}
+
 /* タイポグラフィ */
 
 h1, h2, h3, h4, h5, h6 {
@@ -161,6 +169,10 @@ p {
 
 .label-text {
   font-size: large;
+}
+
+.input-group {
+  margin-top: 50px;
 }
 
 /* 進捗更新ページ */
