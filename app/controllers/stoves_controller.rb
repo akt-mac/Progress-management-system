@@ -17,12 +17,12 @@ class StovesController < ApplicationController
     end
   end
 
-  # def stoves_page
-  #   @page = params[:per]
-  #   @stoves = Stove.paginate(page: params[:page], per_page: @page).
-  #                   order(progress: "ASC", signup_at: "DESC", created_at: "DESC")
-  #   render :index
-  # end
+  def index_page
+    @page = params[:per]
+    @stoves = Stove.paginate(page: params[:page], per_page: @page).
+                    order(progress: "ASC", signup_at: "DESC", created_at: "DESC")
+    render :index
+  end
   
   def new
     @stove = Stove.new

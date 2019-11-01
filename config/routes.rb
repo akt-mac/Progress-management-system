@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/stoves/:id/edit_progress', to: 'stoves#edit_progress', as: :edit_progress
   post '/stove/:id/update_progress', to: 'stoves#update_progress', as: :update_progress
   
-  # get '/stoves/:per', to: 'stoves#stoves_page'
+  get '/stoves/index/:per', to: 'stoves#index_page', as: :stoves_index_per
   
   resources :users
   resources :stoves
