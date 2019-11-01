@@ -40,7 +40,7 @@ textarea {
 }
 
 .show-text {
-  font-size: x-large;
+  font-size: xx-large;
 }
 
 /* タイポグラフィ */
@@ -265,7 +265,7 @@ p {
 }
 
 .chkbox label {
-	padding-left:		38px;			/* ラベルの位置 */
+	padding-left:		48px;			/* ラベルの位置 */
 	font-size:		24px;
 	line-height:		32px;
 	display:		inline-block;
@@ -291,7 +291,7 @@ p {
 }
 /* チェックした時のスタイル */
 .chkbox input[type=checkbox]:checked + label:before {
-	content:		'\1F5F8';		/* チェックの文字 */ 
+	content:		'✓';		/* チェックの文字 */ 
 	font-size:		55px;			/* チェックのサイズ */
 	color:			#444;			/* チェックの色 */
 	background-color:	#5cb85c;			/* チェックした時の色 */

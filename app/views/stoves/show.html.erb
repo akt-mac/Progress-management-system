@@ -2,7 +2,7 @@
 
 <h1>お客様情報詳細</h1>
 <div class="row show-text">
-  <div class="col-md-10 col-md-offset-1 show-user">
+  <div class="col-md-8 col-md-offset-2 show-user">
     <table class="table table-bordered">
       <tbody>
         <tr>
@@ -36,11 +36,11 @@
         </tr>
         <tr>
           <th>電話</th>
-          <td><span class="jump" data-href="tel:#{<%= @stove.phone_number %>}"><%= @stove.phone_number %></span></td>
+          <td><a href="tel:<%= @stove.phone_number %>"><%= @stove.phone_number %></a></td>
         </tr>
         <tr>
           <th>携帯</th>
-          <td><%= @stove.mobile_number %></td>
+          <td><a href="tel:<%= @stove.mobile_number %>"><%= @stove.mobile_number %></a></td>
         </tr>
         <tr>
           <th>住所</th>
