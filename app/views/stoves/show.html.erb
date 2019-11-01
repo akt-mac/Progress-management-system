@@ -1,7 +1,7 @@
 <% provide(:title, @stove.customer_name) %>
 
 <h1>お客様情報詳細</h1>
-<div class="row">
+<div class="row show-text">
   <div class="col-md-10 col-md-offset-1 show-user">
     <table class="table table-bordered">
       <tbody>
@@ -36,7 +36,7 @@
         </tr>
         <tr>
           <th>電話</th>
-          <td><%= @stove.phone_number %></td>
+          <td><span class="jump" data-href="tel:#{<%= @stove.phone_number %>}"><%= @stove.phone_number %></span></td>
         </tr>
         <tr>
           <th>携帯</th>

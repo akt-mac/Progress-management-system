@@ -12,7 +12,7 @@ class StovesController < ApplicationController
                       search(params[:search]).
                       order(progress: "ASC", signup_at: "DESC", created_at: "DESC")
       if params[:search].present?
-        flash[:success] = "検索結果：#{@stoves.count}件" 
+        flash.now[:success] = "検索結果：#{@stoves.count}件" 
       end
     end
   end
@@ -45,7 +45,11 @@ class StovesController < ApplicationController
   
   def update
     if @stove.update_attributes(stove_params)
-      flash[:success] = "#{@stove.customer_name}の登録情報を更新しました。"
+      if @stove.progress == "1"
+        flash[:success] = "#{@stove.customer_name}の情報を更新しました。【✓完了】"
+      else
+        flash[:success] = "#{@stove.customer_name}の情報を更新しました。"
+      end
       redirect_to stoves_url
     else
       render :edit

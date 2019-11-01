@@ -1,0 +1,10 @@
+document.ready(function(){
+  $(".jump").click(function(){
+    if(is_smartphone()){
+      window.href=$(this).attr("data-href");
+    }
+  });
+});
+
+function is_smartphone(){
+}

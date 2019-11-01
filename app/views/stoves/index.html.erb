@@ -1,10 +1,10 @@
-<% provide(:title, '薪ストーブメンテナンス進捗一覧') %>
+<% provide(:title, '薪ストーブメンテナンス') %>
 
 <% if params[:search].present? %>
   <h1>検索結果</h1>
   <h1><%= link_to "戻る", stoves_path %></h1>
 <% else %>
-  <h1>薪ストーブメンテナンス 進捗一覧</h1>
+  <h1>薪ストーブメンテナンス</h1>
 <% end %>
 
 <div class="col-md-12">
@@ -41,7 +41,7 @@
   
   <div>
   <%= will_paginate %>
-  <table class="table table-bordered table-condensed table-striped table-hover text-center" id="maint-table">
+  <table class="table table-bordered table-condensed table-hover text-center" id="maint-table">
     <thead>
       <tr>
         <th class="text-center">受付日</th>
@@ -51,13 +51,15 @@
         <th class="text-center">本体</th>
         <th class="text-center">住所</th>
         <th class="text-center">備考</th>
-        <th class="text-center">修正</th>
+        <% if current_user.admin? %>
+          <th class="text-center">修正</th>
+        <% end %>
       </tr>
     </thead>
     
     <tbody>
       <% @stoves.each do |stove| %>
-        <tr class="<%= "success" if stove.progress == "1" %>">
+        <tr bgcolor="<%= "#e2e4eb" if stove.progress == "1" %>">
           <td><%= stove.signup_at.strftime('%m/%d') %></td>
           <td><%= link_to stove.customer_name, stofe_path(stove) %></td>
           <td>
@@ -81,8 +83,12 @@
           <% end %>
           
           <td><%= stove.address %></td>
-          <td></td>
-          <td><%= link_to "修正", edit_stofe_path(stove), class: "btn btn-default active" %></td>
+          <td>
+            <%= link_to "備考", stofe_path(stove), class: "btn btn-primary" if stove.note.present? %>
+          </td>
+          <% if current_user.admin? %>
+            <td><%= link_to "修正", edit_stofe_path(stove), class: "btn btn-default active" %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
