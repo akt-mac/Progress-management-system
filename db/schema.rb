@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191030014747) do
+ActiveRecord::Schema.define(version: 20191102023320) do
 
   create_table "customers", force: :cascade do |t|
     t.string "customer_code"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20191030014747) do
     t.string "mobile_number"
     t.string "address"
     t.string "progress"
+    t.string "reminder"
   end
 
   create_table "users", force: :cascade do |t|

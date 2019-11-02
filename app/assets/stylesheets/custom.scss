@@ -40,7 +40,11 @@ textarea {
 }
 
 .show-text {
-  font-size: xx-large;
+  font-size: large;
+}
+
+#main-table {
+  font-size: 1.2em;
 }
 
 /* タイポグラフィ */
@@ -69,6 +73,8 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
+
+
 
 .flexiblebox {
  display: -webkit-flex;

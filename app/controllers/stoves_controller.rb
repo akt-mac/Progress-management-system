@@ -1,6 +1,5 @@
 class StovesController < ApplicationController
-  before_action :set_user, only: %i(destroy)
-  before_action :set_stove, only: %i(show edit update edit_progress)
+  before_action :set_stove, only: %i(show edit destroy update edit_progress)
   
   def index
     if params[:search] == ""
@@ -63,6 +62,9 @@ class StovesController < ApplicationController
   end
   
   def destroy
+    @stove.destroy
+    flash[:danger] = "#{@stove.customer_name}のデータを削除しました。"
+    redirect_to stoves_url
   end
   
   private
@@ -76,6 +78,7 @@ class StovesController < ApplicationController
                                      :phone_number,
                                      :mobile_number,
                                      :address,
-                                     :note)
+                                     :note,
+                                     :reminder)
     end
 end

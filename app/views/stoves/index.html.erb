@@ -33,29 +33,30 @@
   </div>
   <% end %>
   
-  <% if @stoves.count == 0 %>
-  <% else %>
   <div>
     <%= link_to "新規登録", new_stofe_path, class: "btn btn-lg btn-info pull-right btn-index" %>
   </div>
   
   <div>
   <%= will_paginate %>
-  <table class="table table-bordered table-condensed table-hover text-center" id="maint-table">
-    <thead>
-      <tr>
-        <th class="text-center">受付日</th>
-        <th class="text-center">氏名</th>
-        <th class="text-center">進捗</th>
-        <th class="text-center">煙突</th>
-        <th class="text-center">本体</th>
-        <th class="text-center">住所</th>
-        <th class="text-center">備考</th>
-        <% if current_user.admin? %>
-          <th class="text-center">修正</th>
-        <% end %>
-      </tr>
-    </thead>
+  <table class="table table-bordered table-condensed table-hover text-center", id="main-table" >
+    <% unless @stoves.count == 0 %>
+      <thead>
+        <tr>
+          <th class="text-center">受付日</th>
+          <th class="text-center">氏名</th>
+          <th class="text-center">進捗</th>
+          <th class="text-center">煙突</th>
+          <th class="text-center">本体</th>
+          <th class="text-center">住所</th>
+          <th class="text-center">備考</th>
+          <% if current_user.admin? %>
+            <th class="text-center">修正</th>
+            <th class="text-center">削除</th>
+          <% end %>
+        </tr>
+      </thead>
+    <% end %>
     
     <tbody>
       <% @stoves.each do |stove| %>
@@ -88,11 +89,15 @@
           </td>
           <% if current_user.admin? %>
             <td><%= link_to "修正", edit_stofe_path(stove), class: "btn btn-default active" %></td>
+            <td>
+              <%= link_to "削除", stofe_path(stove), method: :delete,
+                                  data: { confirm: "#{stove.customer_name}のデータを削除しますか？" },
+                                  class: "btn btn-danger" %>
+            </td>
           <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
   <%= will_paginate %>
-  <% end %>
 </div>

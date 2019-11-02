@@ -45,14 +45,25 @@
         <tr>
           <th>住所</th>
           <td><%= @stove.address %></td>
-        <tr>
-          <th>備考</th>
-          <td class="col-md-10">
-            <%= @stove.note %>
-            <!--<= auto_link(safe_join(@stove.note.split("\n"), tag(:br))) >-->
-          </td>
         </tr>
       </tbody>
     </table>
+    
+    <% if @stove.note.present? %>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>備考</th>
+          </tr>
+          <tr>
+            <td class="col-md-10">
+              <%= @stove.note %>
+              <!--<= auto_link(safe_join(@stove.note.split("\n"), tag(:br))) >-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+    
   </div>
 </div>
