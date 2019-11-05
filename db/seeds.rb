@@ -27,6 +27,7 @@ puts "Completed! sample user"
   mobile_number = "090#{rand(1111..9999)}#{rand(1111..9999)}"
   note =  Faker::Lorem.sentence
   progress = 0
+  reminder = 0
   
   Stove.create!(signup_at: signup_at,
                    customer_name: customer_name,
@@ -36,6 +37,7 @@ puts "Completed! sample user"
                    phone_number: phone_number,
                    mobile_number: mobile_number,
                    note: note,
-                   progress: progress)
+                   progress: progress,
+                   reminder: reminder)
 end
 puts "Completed! sample stove"

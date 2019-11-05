@@ -1,16 +1,16 @@
 <% provide(:title, "進捗更新(#{@stove.customer_name})") %>
 
 <h1 class="modal-title">進捗更新</h1>
-<h2>完了したらチェックボタンを押して更新</h2>
+<h2>チェックボタンを押して更新</h2>
 <div class="row">
   <div class="col-md-10 col-md-offset-1 center">
     <%= form_with(model: @stove, local: true) do |f| %>
- 		<div class="chkbox-progress">
-	  	<%= f.check_box :progress, id: "chkbox-progress" %>
-	  	<%= f.label "完了", for: "chkbox-progress" %>
+ 		<div class="chkbox-reminder">
+	  	<%= f.check_box :reminder, id: "chkbox-reminder" %>
+	  	<%= f.label "催促あり", for: "chkbox-reminder" %>
 		</div>
-    <div class="btn-progress">
-      <%= f.submit "進捗更新", class: "btn btn-lg btn-success" %>
+    <div class="btn-reminder">
+      <%= f.submit "更新", class: "btn btn-lg btn-danger" %>
       <%= link_to "キャンセル", stoves_path, class: "btn btn-lg btn-default active" %>
     </div>
 		<% end %>

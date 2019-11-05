@@ -50,6 +50,7 @@
           <th class="text-center">本体</th>
           <th class="text-center">住所</th>
           <th class="text-center">備考</th>
+          <th class="text-center">催促</th>
           <% if current_user.admin? %>
             <th class="text-center">修正</th>
             <th class="text-center">削除</th>
@@ -87,6 +88,11 @@
           <td>
             <%= link_to "備考", stofe_path(stove), class: "btn btn-primary" if stove.note.present? %>
           </td>
+          
+          <td>
+            <%= link_to "催促", edit_reminder_path(stove), class: "btn btn-default" if stove.progress == "0" %>
+          </td>
+          
           <% if current_user.admin? %>
             <td><%= link_to "修正", edit_stofe_path(stove), class: "btn btn-default active" %></td>
             <td>

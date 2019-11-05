@@ -1,5 +1,5 @@
 class StovesController < ApplicationController
-  before_action :set_stove, only: %i(show edit destroy update edit_progress)
+  before_action :set_stove, only: %i(show edit update destroy edit_progress edit_reminder)
   
   def index
     if params[:search] == ""
@@ -45,6 +45,7 @@ class StovesController < ApplicationController
   def update
     if @stove.update_attributes(stove_params)
       if @stove.progress == "1"
+        @stove.reminder = "0"
         flash[:success] = "#{@stove.customer_name}の情報を更新しました。【✓完了】"
       else
         flash[:success] = "#{@stove.customer_name}の情報を更新しました。"
@@ -58,7 +59,7 @@ class StovesController < ApplicationController
   def edit_progress
   end
   
-  def update_progress
+  def edit_reminder
   end
   
   def destroy
