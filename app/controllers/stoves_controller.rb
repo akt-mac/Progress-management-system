@@ -1,4 +1,5 @@
 class StovesController < ApplicationController
+  before_action :logged_in_user, only: %i(index new show create edit update edit_progress edit_reminder destroy)
   before_action :set_stove, only: %i(show edit update destroy edit_progress edit_reminder)
   
   def index

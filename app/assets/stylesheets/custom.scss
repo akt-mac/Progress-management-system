@@ -151,7 +151,7 @@ p {
 }
 
 
-/* ユーザー一覧ページ */
+/* ストーブ一覧ページ */
 
 #table-users {
   td {
@@ -173,6 +173,10 @@ p {
 
 .category {
   height: 100px;
+}
+
+.show-customer {
+  font-size: 25px;
 }
 
 /* ログインフォーム */
@@ -209,6 +213,10 @@ p {
   margin-top: 50px;
 }
 
+.btn-reminder {
+  margin-top: 50px;
+}
+
 /* モーダルウインドウの位置調整 */
 
 .modal-dialog-center {
@@ -216,6 +224,10 @@ p {
 }
 
 /* 基本情報編集モーダルウインドウ */
+
+.modal-dialog {
+  margin-top: -130px;
+}
 
 .label-new {
   margin-top: 5px;

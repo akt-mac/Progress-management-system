@@ -1,0 +1,84 @@
+<% provide(:title, @stove.customer_name) %>
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h1>得意様情報詳細</h1>
+    </div>
+    <div class="modal-body">
+      <div class="row show-text">
+        <div class="col-md-10 col-md-offset-1 show-customer">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th class="col-md-3">受付日</th>
+                <td><%= @stove.signup_at.strftime('%Y/%m/%d') %></td>
+              </tr>
+              <tr>
+                <th>得意先名</th>
+                <td><%= @stove.customer_name %></td>
+              </tr>
+              <tr>
+                <th>進捗状況</th>
+                <td>
+                  <% if @stove.reminder == '1' %>
+                    <label class="label label-danger">催促あり</label>
+                  <% end %>
+                  <% if @stove.progress == '1' %>
+                    <label class="label label-success">完了</label>
+                  <% else  %>
+                    <label class="label label-default">未完了</label>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th>メンテナンス</th>
+                <td>
+                  <% if @stove.summary_1 == '1' %>
+                    <label class="label label-danger">煙突</label>
+                  <% end %>
+                  <% if @stove.summary_2 == '1' %>
+                    <label class="label label-warning">本体</label>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th>電話</th>
+                <td><a href="tel:<%= @stove.phone_number %>"><%= @stove.phone_number %></a></td>
+              </tr>
+              <tr>
+                <th>携帯</th>
+                <td><a href="tel:<%= @stove.mobile_number %>"><%= @stove.mobile_number %></a></td>
+              </tr>
+              <tr>
+                <th>住所</th>
+                <td><%= @stove.address %></td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <% if @stove.note.present? %>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>備考</th>
+                </tr>
+                <tr>
+                  <td class="col-md-10">
+                    <%= @stove.note %>
+                    <!--<= auto_link(safe_join(@stove.note.split("\n"), tag(:br))) >-->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+          <div class="center">
+            <%= link_to "戻る", stoves_url, class: "btn btn-lg btn-default active" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

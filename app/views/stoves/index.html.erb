@@ -36,7 +36,7 @@
   <% end %>
   
   <div>
-    <%= link_to "新規登録", new_stofe_path, class: "btn btn-lg btn-primary pull-right btn-index" %>
+    <%= link_to "新規登録", new_stofe_path, remote: true, class: "btn btn-lg btn-primary pull-right btn-index" %>
   </div>
   
   <div>
@@ -71,12 +71,12 @@
           <tr>
         <% end %>
           <td><%= stove.signup_at.strftime('%m/%d') %></td>
-          <td><%= link_to stove.customer_name, stofe_path(stove) %></td>
+          <td><%= link_to stove.customer_name, stofe_path(stove), remote: true %></td>
           <td>
             <% if stove.progress == "0" %>
-              <%= link_to "未完了", edit_progress_path(stove), class: "btn btn-default active" %>
+              <%= link_to "未完了", edit_progress_path(stove), remote: true, class: "btn btn-default active" %>
             <% else stove.progress == "1" %>
-              <%= link_to "完了", edit_progress_path(stove), class: "btn btn-success" %>
+              <%= link_to "完了", edit_progress_path(stove), remote: true, class: "btn btn-success" %>
             <% end %>
           </td>
           
@@ -94,20 +94,20 @@
           
           <td><%= stove.address %></td>
           <td>
-            <%= link_to "備考", stofe_path(stove), class: "btn btn-primary" if stove.note.present? %>
+            <%= link_to "備考", stofe_path(stove), remote: true, class: "btn btn-primary" if stove.note.present? %>
           </td>
           
           <td>
             <% if stove.progress == "0" && stove.reminder == "0" %>
-              <%= link_to "　　", edit_reminder_path(stove), class: "btn btn-default" %>
+              <%= link_to "　　", edit_reminder_path(stove), remote: true, class: "btn btn-default" %>
             <% elsif stove.progress == "0" && stove.reminder == "1" %>
-              <%= link_to "催促", edit_reminder_path(stove), class: "btn btn-danger" %>
+              <%= link_to "催促", edit_reminder_path(stove), remote: true, class: "btn btn-danger" %>
             <% else %>
             <% end %>
           </td>
           
           <% if current_user.admin? %>
-            <td><%= link_to "修正", edit_stofe_path(stove), class: "btn btn-default active" %></td>
+            <td><%= link_to "修正", edit_stofe_path(stove), remote: true, class: "btn btn-default active" %></td>
             <td>
               <%= link_to "削除", stofe_path(stove), method: :delete,
                                   data: { confirm: "#{stove.customer_name}のデータを削除しますか？" },
@@ -120,3 +120,10 @@
   </table>
   <%= will_paginate %>
 </div>
+
+<!-- モーダルウィンドウ -->
+<div id="edit-progress" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="edit-reminder" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
