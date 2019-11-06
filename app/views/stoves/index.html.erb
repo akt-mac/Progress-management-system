@@ -5,6 +5,8 @@
   <h1><%= link_to "戻る", stoves_path %></h1>
 <% else %>
   <h1>薪ストーブメンテナンス</h1>
+  <h3 class="center">未完了:<%= Stove.where(progress: "0").count %>件
+                      (催促:<%= Stove.where(reminder: "1").count %>件)</h3>
 <% end %>
 
 <div class="col-md-12">
@@ -34,7 +36,7 @@
   <% end %>
   
   <div>
-    <%= link_to "新規登録", new_stofe_path, class: "btn btn-lg btn-info pull-right btn-index" %>
+    <%= link_to "新規登録", new_stofe_path, class: "btn btn-lg btn-primary pull-right btn-index" %>
   </div>
   
   <div>
@@ -61,7 +63,13 @@
     
     <tbody>
       <% @stoves.each do |stove| %>
-        <tr bgcolor="<%= "#e2e4eb" if stove.progress == "1" %>">
+        <% if stove.progress == "1" && stove.reminder == "0" %>
+          <tr bgcolor="<%= "#e2e4eb" %>">
+        <% elsif stove.progress == "0" && stove.reminder == "1" %>
+          <tr bgcolor="<%= "#ffd2d2" %>">
+        <% else %>
+          <tr>
+        <% end %>
           <td><%= stove.signup_at.strftime('%m/%d') %></td>
           <td><%= link_to stove.customer_name, stofe_path(stove) %></td>
           <td>
@@ -90,7 +98,12 @@
           </td>
           
           <td>
-            <%= link_to "催促", edit_reminder_path(stove), class: "btn btn-default" if stove.progress == "0" %>
+            <% if stove.progress == "0" && stove.reminder == "0" %>
+              <%= link_to "　　", edit_reminder_path(stove), class: "btn btn-default" %>
+            <% elsif stove.progress == "0" && stove.reminder == "1" %>
+              <%= link_to "催促", edit_reminder_path(stove), class: "btn btn-danger" %>
+            <% else %>
+            <% end %>
           </td>
           
           <% if current_user.admin? %>

@@ -18,7 +18,8 @@
     </div>
     <div class="category">
       <%= link_to stoves_path, class: "btn btn-danger btn-block btn-lg active flexiblebox progress-btn" do %>
-        薪ストーブメンテナンス表<br>未完了件数：<%= Stove.where(progress: "0").count %>件
+        薪ストーブメンテナンス表<br>未完了:<%= Stove.where(progress: "0").count %>件
+                                     (催促:<%= Stove.where(reminder: "1").count %>件)
       <% end %>
     </div>
     <div class="category">

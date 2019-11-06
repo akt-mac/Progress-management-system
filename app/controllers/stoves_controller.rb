@@ -9,7 +9,7 @@ class StovesController < ApplicationController
       @page = 20
       @stoves = Stove.paginate(page: params[:page], per_page: @page).
                       search(params[:search]).
-                      order(progress: "ASC", signup_at: "DESC", created_at: "DESC")
+                      order(reminder: :DESC, progress: :ASC, signup_at: :DESC, created_at: :DESC)
       if params[:search].present?
         flash.now[:success] = "検索結果：#{@stoves.count}件" 
       end
@@ -19,7 +19,7 @@ class StovesController < ApplicationController
   def index_page
     @page = params[:per]
     @stoves = Stove.paginate(page: params[:page], per_page: @page).
-                    order(progress: "ASC", signup_at: "DESC", created_at: "DESC")
+                    order(reminder: :DESC, progress: :ASC, signup_at: :DESC, created_at: :DESC)
     render :index
   end
   
@@ -46,6 +46,7 @@ class StovesController < ApplicationController
     if @stove.update_attributes(stove_params)
       if @stove.progress == "1"
         @stove.reminder = "0"
+        @stove.save
         flash[:success] = "#{@stove.customer_name}の情報を更新しました。【✓完了】"
       else
         flash[:success] = "#{@stove.customer_name}の情報を更新しました。"
