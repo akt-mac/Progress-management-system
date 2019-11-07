@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  signup_at: 2019-11-07
+  customer_name: MyString
+  phone_number: MyString
+  mobile_number: MyString
+  address: MyString
+  progress: MyString
+  reminder: MyString
+  note: MyString
+  summary_1: MyString
+  summary_2: MyString
+
+two:
+  signup_at: 2019-11-07
+  customer_name: MyString
+  phone_number: MyString
+  mobile_number: MyString
+  address: MyString
+  progress: MyString
+  reminder: MyString
+  note: MyString
+  summary_1: MyString
+  summary_2: MyString

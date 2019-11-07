@@ -18,7 +18,7 @@
       </span>
     <% end %>
   </div>
-  
+
   <% unless params[:search].present? %>
   <div class="dropdown doropdown-index">
   　<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -34,7 +34,6 @@
   　<span class="doropdown-text">件表示</span>
   </div>
   <% end %>
-  
   <div>
     <%= link_to "新規登録", new_stofe_path, remote: true, class: "btn btn-lg btn-primary pull-right btn-index" %>
   </div>
