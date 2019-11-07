@@ -67,8 +67,7 @@
                 </tr>
                 <tr>
                   <td class="col-md-10">
-                    <%= @stove.note %>
-                    <!--<= auto_link(safe_join(@stove.note.split("\n"), tag(:br))) >-->
+                    <%= simple_format(@stove.note) %>
                   </td>
                 </tr>
               </tbody>
