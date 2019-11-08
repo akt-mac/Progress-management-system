@@ -1,11 +1,10 @@
 <% provide(:title, '修理管理') %>
-<% provide(:class_path, repairs_path) %>
 
 <% if params[:search].present? %>
   <h1>検索結果</h1>
   <h1><%= link_to "戻る", repairs_path %></h1>
 <% else %>
-  <h1>薪ストーブメンテナンス</h1>
+  <h1>修理管理</h1>
   <h3 class="center">未完了:<%= Repair.where(progress: "0").count %>件
                       (催促:<%= Repair.where(reminder: "1").count %>件)</h3>
 <% end %>
@@ -20,23 +19,23 @@
     <% end %>
   </div>
 
-  <!--<% unless params[:search].present? %>-->
-  <!--<div class="dropdown doropdown-index">-->
-  <!--　<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
-  <!--　　<%= @page %>-->
-  <!--　　<span class="caret"></span>-->
-  <!--　</button>-->
-  <!--　<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
-  <!--　　<li><%= link_to "10", repairs_index_per_path(10) %></li>-->
-  <!--　　<li><%= link_to "20", repairs_index_per_path(20) %></li>-->
-  <!--　　<li><%= link_to "50", repairs_index_per_path(50) %></li>-->
-  <!--　　<li><%= link_to "100", repairs_index_per_path(100) %></li>-->
-  <!--　</ul>-->
-  <!--　<span class="doropdown-text">件表示</span>-->
-  <!--</div>-->
-  <!--<% end %>-->
+  <% unless params[:search].present? %>
+  <div class="dropdown doropdown-index">
+  　<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  　　<%= @page %>
+  　　<span class="caret"></span>
+  　</button>
+  　<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  　　<li><%= link_to "10", repairs_index_per_path(10) %></li>
+  　　<li><%= link_to "20", repairs_index_per_path(20) %></li>
+  　　<li><%= link_to "50", repairs_index_per_path(50) %></li>
+  　　<li><%= link_to "100", repairs_index_per_path(100) %></li>
+  　</ul>
+  　<span class="doropdown-text">件表示</span>
+  </div>
+  <% end %>
   <div>
-    <%= link_to "新規登録", new_repair_path, remote: true, class: "btn btn-lg btn-primary pull-right btn-index" %>
+    <%= link_to "新規登録", new_repair_path, class: "btn btn-lg btn-primary pull-right btn-index" %>
   </div>
   
   <div>
@@ -47,11 +46,11 @@
         <tr>
           <th class="text-center">受付日</th>
           <th class="text-center">氏名</th>
+          <th class="text-center">型式</th>
           <th class="text-center">進捗</th>
-          <th class="text-center">煙突</th>
-          <th class="text-center">本体</th>
+          <th class="text-center">連絡</th>
+          <th class="text-center">バーケース</th>
           <th class="text-center">住所</th>
-          <th class="text-center">備考</th>
           <th class="text-center">催促</th>
           <% if current_user.admin? %>
             <th class="text-center">修正</th>
@@ -71,43 +70,41 @@
           <tr>
         <% end %>
           <td><%= repair.signup_at.strftime('%m/%d') %></td>
-          <td><%= link_to repair.customer_name, repair_path(repair), remote: true %></td>
+          <td><%= link_to repair.customer_name, repair_path(repair) %></td>
+          <td><%= repair.machine_type %></td>
           <td>
             <% if repair.progress == "0" %>
-              <%= link_to "未完了", edit_progress_path(repair), remote: true, class: "btn btn-default active" %>
+              <%= link_to "未完了", repair_edit_progress_path(repair), class: "btn btn-default active" %>
             <% else repair.progress == "1" %>
-              <%= link_to "完了", edit_progress_path(repair), remote: true, class: "btn btn-success" %>
+              <%= link_to "完了", repair_edit_progress_path(repair), class: "btn btn-success" %>
             <% end %>
           </td>
           
           <% if repair.summary_1 == "1" %>
-            <td class="label-text"><label class="label label-danger">煙突</label></td>
+            <td><%= link_to "済", '#', class: "btn btn-info" %></td>
           <% else %>
-            <td></td>
+            <td><%= link_to "未", '#', class: "btn btn-default active" %></td>
           <% end %>
           
           <% if repair.summary_2 == "1" %>
-            <td class="label-text"><label class="label label-warning">本体</label></td>
+            <td class="label-text"><label class="label label-warning">有り</label></td>
           <% else %>
             <td></td>
           <% end %>
           
           <td><%= repair.address %></td>
-          <td>
-            <%= link_to "備考", repair_path(repair), remote: true, class: "btn btn-primary" if repair.note.present? %>
-          </td>
           
           <td>
             <% if repair.progress == "0" && repair.reminder == "0" %>
-              <%= link_to "　　", edit_reminder_path(repair), remote: true, class: "btn btn-default" %>
+              <%= link_to "　　", repair_edit_reminder_path(repair), class: "btn btn-default" %>
             <% elsif repair.progress == "0" && repair.reminder == "1" %>
-              <%= link_to "催促", edit_reminder_path(repair), remote: true, class: "btn btn-danger" %>
+              <%= link_to "催促", repair_edit_reminder_path(repair), class: "btn btn-danger" %>
             <% else %>
             <% end %>
           </td>
           
           <% if current_user.admin? %>
-            <td><%= link_to "修正", edit_repair_path(repair), remote: true, class: "btn btn-default active" %></td>
+            <td><%= link_to "修正", edit_repair_path(repair), class: "btn btn-default active" %></td>
             <td>
               <%= link_to "削除", repair_path(repair), method: :delete,
                                   data: { confirm: "#{repair.customer_name}のデータを削除しますか？" },

@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       stove: ストーブ
+      repair: 修理
     attributes:
         user:
           id: ID
@@ -22,4 +23,18 @@ ja:
           phone_number: 電話番号
           mobile_number: 携帯電話番号
           address: 住所
-          
+          progress: 進捗
+          reminder: 催促
+        repair:
+          signup_at: 受付日
+          summary_1: 連絡
+          summary_2: バーケース
+          progress: 進捗
+          note: 症状
+          customer_name: 得意先名
+          phone_number: 電話番号
+          mobile_number: 携帯電話番号
+          address: 住所
+          progress: 進捗
+          reminder: 催促
+          machine_type: 型式

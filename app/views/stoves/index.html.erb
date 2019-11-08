@@ -73,9 +73,9 @@
           <td><%= link_to stove.customer_name, stofe_path(stove), remote: true %></td>
           <td>
             <% if stove.progress == "0" %>
-              <%= link_to "未完了", edit_progress_path(stove), remote: true, class: "btn btn-default active" %>
+              <%= link_to "未完了", stove_edit_progress_path(stove), remote: true, class: "btn btn-default active" %>
             <% else stove.progress == "1" %>
-              <%= link_to "完了", edit_progress_path(stove), remote: true, class: "btn btn-success" %>
+              <%= link_to "完了", stove_edit_progress_path(stove), remote: true, class: "btn btn-success" %>
             <% end %>
           </td>
           
@@ -98,9 +98,9 @@
           
           <td>
             <% if stove.progress == "0" && stove.reminder == "0" %>
-              <%= link_to "　　", edit_reminder_path(stove), remote: true, class: "btn btn-default" %>
+              <%= link_to "　　", stove_edit_reminder_path(stove), remote: true, class: "btn btn-default" %>
             <% elsif stove.progress == "0" && stove.reminder == "1" %>
-              <%= link_to "催促", edit_reminder_path(stove), remote: true, class: "btn btn-danger" %>
+              <%= link_to "催促", stove_edit_reminder_path(stove), remote: true, class: "btn btn-danger" %>
             <% else %>
             <% end %>
           </td>

@@ -1,0 +1,78 @@
+<% provide(:title, @repair.customer_name) %>
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h1>得意様情報詳細</h1>
+    </div>
+    <div class="modal-body">
+      <div class="row show-text">
+        <div class="col-md-10 col-md-offset-1 show-customer">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th class="col-md-3">受付日</th>
+                <td><%= @repair.signup_at.strftime('%Y/%m/%d') %></td>
+              </tr>
+              <tr>
+                <th>得意先名</th>
+                <td><%= @repair.customer_name %></td>
+              </tr>
+              <tr>
+                <th>進捗状況</th>
+                <td>
+                  <% if @repair.reminder == '1' %>
+                    <label class="label label-danger">催促あり</label>
+                  <% end %>
+                  <% if @repair.progress == '1' %>
+                    <label class="label label-success">完了</label>
+                  <% else  %>
+                    <label class="label label-default">未完了</label>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th>&emsp;</th>
+                <td>
+                  <% if @repair.summary_2 == '1' %>
+                    <label class="label label-warning">バーケース</label>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th>電話</th>
+                <td><a href="tel:<%= @repair.phone_number %>"><%= @repair.phone_number %></a></td>
+              </tr>
+              <tr>
+                <th>携帯</th>
+                <td><a href="tel:<%= @repair.mobile_number %>"><%= @repair.mobile_number %></a></td>
+              </tr>
+              <tr>
+                <th>住所</th>
+                <td><%= @repair.address %></td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td><%= @repair.machine_type %></td>
+              </tr>
+              <tr>
+                <td class="col-md-10">
+                  <%= simple_format(@repair.note) %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="center">
+            <%= link_to "一覧に戻る", repairs_url, class: "btn btn-lg btn-default active" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

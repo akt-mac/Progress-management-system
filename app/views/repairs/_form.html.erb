@@ -1,20 +1,16 @@
-<%= form_with(model: @stove, local: true) do |f| %>
-  <%= render partial: 'shared/error_messages', locals: { obj: @stove } %>
+<%= form_with(model: @repair, local: true) do |f| %>
+  <%= render partial: 'shared/error_messages', locals: { obj: @repair } %>
   
   <div>
     <%= f.label :signup_at, class: "label-#{yield(:class_text)}" %>
     <%= f.date_field :signup_at, class: "form-control"  %>
   </div>
   
-  <p></p>
-  <div>
-    <%= f.check_box :summary_1, class: "checkbox-inline" %>
-    <%= f.label :summary_1, class: "label-#{yield(:class_text)}" %>
-    <span>&emsp;&emsp;</span>
-    <%= f.check_box :summary_2, class: "checkbox-inline" %>
-    <%= f.label :summary_2, class: "label-#{yield(:class_text)}" %>
-  </div>
-  <p></p>
+  <%= f.label :machine_type, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :machine_type, class: "form-control" %>
+  
+  <%= f.label :note, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_area :note, class: "form-control", rows: 3 %>
   
   <%= f.label :customer_name, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :customer_name, placeholder: '必須項目', class: "form-control" %>
@@ -27,15 +23,18 @@
   
   <%= f.label :mobile_number, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :mobile_number, placeholder: 'ハイフンなしで入力 例: 09012341234', class: "form-control" %>
-
-  <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_area :note, class: "form-control", rows: 3 %>
   
+  <div>
+    <%= f.check_box :summary_2, class: "checkbox-inline" %>
+    <%= f.label :summary_2, class: "label-#{yield(:class_text)}" %>
+  </div>
+  
+  <%= f.check_box :summary_1, class: "display-none" %>
   <%= f.check_box :progress, class: "display-none" %>
   <%= f.check_box :reminder, class: "display-none" %>
 
   <div class="center">
     <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>
-    <%= link_to "一覧に戻る", stoves_path, class: "btn btn-default active btn-#{yield(:class_text)}" %>
+    <%= link_to "一覧に戻る", repairs_path, class: "btn btn-default active btn-#{yield(:class_text)}" %>
   </div>
 <% end %>
