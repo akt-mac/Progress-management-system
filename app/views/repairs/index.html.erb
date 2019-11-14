@@ -70,7 +70,7 @@
           <tr>
         <% end %>
           <td><%= repair.signup_at.strftime('%m/%d') %></td>
-          <td><%= link_to repair.customer_name, repair_path(repair) %></td>
+          <td><%= link_to repair.customer_name, repair_path(repair), remote: true %></td>
           <td><%= repair.machine_type %></td>
           <td>
             <% if repair.progress == "0" %>
@@ -104,7 +104,7 @@
           </td>
           
           <% if current_user.admin? %>
-            <td><%= link_to "修正", edit_repair_path(repair), class: "btn btn-default active" %></td>
+            <td><%= link_to "修正", edit_repair_path(repair), class: "btn btn-default active", remote: true %></td>
             <td>
               <%= link_to "削除", repair_path(repair), method: :delete,
                                   data: { confirm: "#{repair.customer_name}のデータを削除しますか？" },
@@ -117,3 +117,10 @@
   </table>
   <!--<= will_paginate >-->
 </div>
+
+<!-- モーダルウィンドウ -->
+<!--<div id="edit-progress" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
+<!--<div id="edit-reminder" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
+<!--<div id="new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
+<div id="show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
