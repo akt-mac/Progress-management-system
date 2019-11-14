@@ -47,6 +47,7 @@ class RepairsController < ApplicationController
     if @repair.update_attributes(repair_params)
       if @repair.progress == "1"
         @repair.reminder = "0"
+        @repair.contacted = "1"
         @repair.save
         flash[:success] = "#{@repair.customer_name}の情報を更新しました。【✓完了】"
       else
@@ -80,6 +81,7 @@ class RepairsController < ApplicationController
                                      :address,
                                      :note,
                                      :reminder,
-                                     :machine_type)
+                                     :machine_type,
+                                     :contacted)
     end
 end

@@ -32,6 +32,7 @@
   <%= f.check_box :summary_1, class: "display-none" %>
   <%= f.check_box :progress, class: "display-none" %>
   <%= f.check_box :reminder, class: "display-none" %>
+  <%= f.check_box :contacted, class: "display-none" %>
 
   <div class="center">
     <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>

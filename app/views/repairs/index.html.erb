@@ -35,7 +35,7 @@
   </div>
   <% end %>
   <div>
-    <%= link_to "新規登録", new_repair_path, class: "btn btn-lg btn-primary pull-right btn-index" %>
+    <%= link_to "新規登録", new_repair_path, remote: true, class: "btn btn-lg btn-primary pull-right btn-index" %>
   </div>
   
   <div>
@@ -73,16 +73,18 @@
           <td><%= link_to repair.customer_name, repair_path(repair), remote: true %></td>
           <td><%= repair.machine_type %></td>
           <td>
-            <% if repair.progress == "0" %>
-              <%= link_to "未完了", edit_progress_repair_path(repair), class: "btn btn-default active" %>
-            <% else repair.progress == "1" %>
+            <% if repair.progress == "1" %>
               <%= link_to "完了", edit_progress_repair_path(repair), class: "btn btn-success" %>
+            <% elsif repair.progress == "0" && repair.contacted == "1" %>
+              <%= link_to "未引渡", edit_progress_repair_path(repair), class: "btn btn-info" %>
+            <% else repair.progress == "0" %>
+              <%= link_to "未完了", edit_progress_repair_path(repair), class: "btn btn-default active" %>
             <% end %>
           </td>
           
-          <% if repair.summary_1 == "1" %>
+          <% if repair.contacted == "1" %>
             <td><%= link_to "済", '#', class: "btn btn-info" %></td>
-          <% else %>
+          <% else repair.contacted == "0" %>
             <td><%= link_to "未", '#', class: "btn btn-default active" %></td>
           <% end %>
           
@@ -121,6 +123,6 @@
 <!-- モーダルウィンドウ -->
 <!--<div id="edit-progress" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
 <!--<div id="edit-reminder" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
-<!--<div id="new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
+<div id="new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
