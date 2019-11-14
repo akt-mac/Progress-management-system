@@ -74,9 +74,9 @@
           <td><%= repair.machine_type %></td>
           <td>
             <% if repair.progress == "0" %>
-              <%= link_to "未完了", repair_edit_progress_path(repair), class: "btn btn-default active" %>
+              <%= link_to "未完了", edit_progress_repair_path(repair), class: "btn btn-default active" %>
             <% else repair.progress == "1" %>
-              <%= link_to "完了", repair_edit_progress_path(repair), class: "btn btn-success" %>
+              <%= link_to "完了", edit_progress_repair_path(repair), class: "btn btn-success" %>
             <% end %>
           </td>
           
@@ -96,9 +96,9 @@
           
           <td>
             <% if repair.progress == "0" && repair.reminder == "0" %>
-              <%= link_to "　　", repair_edit_reminder_path(repair), class: "btn btn-default" %>
+              <%= link_to "　　", edit_reminder_repair_path(repair), class: "btn btn-default" %>
             <% elsif repair.progress == "0" && repair.reminder == "1" %>
-              <%= link_to "催促", repair_edit_reminder_path(repair), class: "btn btn-danger" %>
+              <%= link_to "催促", edit_reminder_repair_path(repair), class: "btn btn-danger" %>
             <% else %>
             <% end %>
           </td>
